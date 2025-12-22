@@ -1,5 +1,5 @@
 import {z} from 'zod';
-import {ProductSchema} from "../generated/zod"; 
+import {ProductSchema} from "../../prisma/src/generated/zod"; 
 
 export const CreateProductSchema = ProductSchema.pick({
     name: true,
