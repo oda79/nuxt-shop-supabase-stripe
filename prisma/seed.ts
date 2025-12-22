@@ -3,7 +3,7 @@ import { PrismaPg } from "@prisma/adapter-pg";
 import { Pool } from "pg";
 import { $fetch } from "ofetch";
 import { z } from "zod";
-import { ProductCreateManyInputSchema } from "../shared/generated/zod"
+import { ProductCreateManyInputSchema } from "./src/generated/zod"
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,

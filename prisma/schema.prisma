@@ -5,11 +5,11 @@ generator client {
 
 generator zod {
   provider = "zod-prisma-types"
-  output = "../shared/generated/zod"
+  output = "./src/generated/zod"
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "postgresql"  
 }
 
 model Product {

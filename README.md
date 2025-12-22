@@ -1,75 +1,68 @@
-# Nuxt Minimal Starter
+# Nuxt-Shop-Supabase-Stripe
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+A lightweight e-commerce shop built with **Nuxt 3** and a modern full-stack setup.  
+This project serves as a learning and experimentation ground for building a real-world shop architecture using current best practices.
 
-## Setup
+---
 
-Make sure to install dependencies:
+## Tech Stack
 
-```bash
-# npm
-npm install
+- **Nuxt 3** – frontend framework (SSR + API routes)
+- **Supabase (PostgreSQL)** – database
+- **Prisma** – ORM and migrations
+- **Stripe** – payments
+- **Zod** – runtime validation and DTO schemas
+- **TypeScript** – end-to-end type safety
 
-# pnpm
-pnpm install
+---
 
-# yarn
-yarn install
+## Project Goals
 
-# bun
-bun install
+- Practice building a real e-commerce flow (products, cart, checkout)
+- Learn Nuxt server routes and backend integration
+- Use Prisma correctly with migrations and seeds
+- Validate all external and user input with Zod
+- Maintain a clean separation between:
+  - database models
+  - API DTOs
+  - frontend logic
+
+---
+
+## Environment Variables
+
+Create a `.env` file in the project root. At minimum:
+
+```
+DATABASE_URL=
+DIRECT_URL=
+SUPABASE_URL=
+SUPABASE_KEY=
+STRIPE_SECRET_KEY=
 ```
 
-## Development Server
+Details and additional variables will be documented as the project evolves.
 
-Start the development server on `http://localhost:3000`:
+---
 
-```bash
-# npm
-npm run dev
+## Database
 
-# pnpm
-pnpm dev
+- Prisma is used as the ORM
+- Migrations live in `prisma/migrations`
+- Database seeding is handled via Prisma seed scripts
 
-# yarn
-yarn dev
-
-# bun
-bun run dev
-```
-
-## Production
-
-Build the application for production:
+Common commands:
 
 ```bash
-# npm
-npm run build
-
-# pnpm
-pnpm build
-
-# yarn
-yarn build
-
-# bun
-bun run build
+npx prisma migrate dev
+npx prisma db seed
 ```
 
-Locally preview production build:
+---
 
-```bash
-# npm
-npm run preview
+## Status
 
-# pnpm
-pnpm preview
+🚧 Work in progress
 
-# yarn
-yarn preview
+Features, structure, and documentation will evolve over time.
 
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.

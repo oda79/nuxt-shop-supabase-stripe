@@ -3,12 +3,15 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: [
-    '@nuxtjs/tailwindcss',
-    'nuxt-icon',
-    '@nuxtjs/supabase',
-    //'@nuxtjs/prisma'
-  ],
+  modules: ['@nuxtjs/tailwindcss', '@nuxt/icon', '@nuxtjs/supabase'],
+  css: ['@/assets/css/main.css'],
+  icon: {
+    mode: 'svg'
+  },
+  supabase: {
+    types: false,
+    redirect: false
+  },
   runtimeConfig: {
     public: {
       supabaseUrl: process.env.SUPABASE_URL,
@@ -21,16 +24,7 @@ export default defineNuxtConfig({
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
         { name: 'description', content: 'A simple e-commerce shop built with Nuxt 3 with Supabase & Stripe.' }
-      ],
-      link: [
-        // { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
-        {rel: 'stylesheet', href: 'https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css'}
-      ],
-      script: [
-      {
-        src: "https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js", defer: true
-      }
-    ]
-    },    
-  }
+      ],   
+    },
+  },
 })
