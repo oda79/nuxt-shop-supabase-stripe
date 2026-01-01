@@ -1,17 +1,19 @@
 /// <reference types="nuxt" />
+import { fileURLToPath } from 'node:url'
 
 export default defineNuxtConfig({
+  srcDir: 'app',
+  extends: ['./layers/base', './layers/shop-commerce'],
+  alias: {
+    // stable aliases to layers
+    '@base': fileURLToPath(new URL('./layers/base', import.meta.url)),
+    '@commerce': fileURLToPath(new URL('./layers/shop-commerce', import.meta.url)),
+  },
+  dir: {
+    public: fileURLToPath(new URL('./public', import.meta.url)), 
+  },
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', '@nuxt/icon', '@nuxtjs/supabase'],
-  css: ['@/assets/css/main.css'],
-  icon: {
-    mode: 'svg'
-  },
-  supabase: {
-    types: false,
-    redirect: false
-  },
   runtimeConfig: {
     public: {
       supabaseUrl: process.env.SUPABASE_URL,

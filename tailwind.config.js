@@ -1,12 +1,15 @@
 export default {
   darkMode: 'class',
   content: [
+    "./app/**/*.{vue,js,ts}",
+    "./layers/**/*.{vue,js,ts}",
     "./components/**/*.{vue,js,ts}",
     "./layouts/**/*.vue",
     "./pages/**/*.vue",
     "./plugins/**/*.{js,ts}",
     "./nuxt.config.{js,ts}",
   ],
+
   theme: {
     extend: {
       colors: {
@@ -25,17 +28,8 @@ export default {
         },
       },
       fontFamily: {
-        'body': [
-          'Inter',
-          'ui-sans-serif',
-          'system-ui',
-        ],
-        'sans': [
-          'Inter',
-          'ui-sans-serif',
-          'system-ui',
-        ]
-      }
+        sans: ['Inter', 'ui-sans-serif', 'system-ui'],
+      },
     }
   },
   plugins: []

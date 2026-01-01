@@ -1,31 +1,77 @@
-# Nuxt-Shop-Supabase-Stripe
+# Nuxt Shop (Layered Architecture)
 
-A lightweight e-commerce shop built with **Nuxt 3** and a modern full-stack setup.  
-This project serves as a learning and experimentation ground for building a real-world shop architecture using current best practices.
+A modular e-commerce application built with **Nuxt 3**, using **Nuxt Layers**
+to separate UI foundations, business logic, and application-specific code.
+
+This project is intentionally structured to practice **real-world architecture**
+and scalability patterns.
+
+---
+
+## Architecture Overview
+
+This repository uses **Nuxt Layers** to split responsibilities:
+
+```
+layers/
+├── base # UI + design system (Tailwind, layouts, shared components)
+├── shop-commerce # Business logic (Prisma, Supabase, API, schemas)
+app/ # Application layer (pages, branding, overrides)
+```
+
+
+### Layer Responsibilities
+
+#### 🧱 Base Layer (`layers/base`)
+- Tailwind CSS setup and design tokens
+- Shared UI components
+- Layouts
+- Generic composables (theme, click-outside, currency, etc.)
+
+> No business logic, no database, no auth.
+
+---
+
+#### 🛒 Commerce Layer (`layers/shop-commerce`)
+- Prisma schema, migrations, and seed scripts
+- Prisma client configuration
+- Server API routes
+- Zod schemas for accounts and domain models
+- Commerce composables (auth, cart, checkout)
+
+> This layer can be reused by another Nuxt app.
+
+---
+
+#### 🧠 App Layer (`app/`)
+- Pages (`/login`, `/register`, `/my-account`, etc.)
+- App-level layout
+- SEO & metadata
+- Runtime configuration
+- Overrides of base/commerce components if needed
+
+> Highest priority layer.
 
 ---
 
 ## Tech Stack
 
-- **Nuxt 3** – frontend framework (SSR + API routes)
-- **Supabase (PostgreSQL)** – database
-- **Prisma** – ORM and migrations
-- **Stripe** – payments
-- **Zod** – runtime validation and DTO schemas
-- **TypeScript** – end-to-end type safety
+- **Nuxt 3** – SSR + API routes
+- **Nuxt Layers** – modular architecture
+- **Tailwind CSS** – styling
+- **Supabase** – authentication & PostgreSQL
+- **Prisma** – ORM & migrations
+- **Zod** – validation schemas
+- **Stripe** – payments (planned)
+- **TypeScript** – full type safety
 
 ---
 
-## Project Goals
+## Tailwind CSS
 
-- Practice building a real e-commerce flow (products, cart, checkout)
-- Learn Nuxt server routes and backend integration
-- Use Prisma correctly with migrations and seeds
-- Validate all external and user input with Zod
-- Maintain a clean separation between:
-  - database models
-  - API DTOs
-  - frontend logic
+- Tailwind config lives at the **root**
+- Styles are defined in the **base layer**
+- Tailwind scans all layers via the root config
 
 ---
 
@@ -45,16 +91,17 @@ Details and additional variables will be documented as the project evolves.
 
 ---
 
-## Database
+## Database (Prisma)
 
-- Prisma is used as the ORM
-- Migrations live in `prisma/migrations`
-- Database seeding is handled via Prisma seed scripts
+- Prisma schema and migrations live in `layers/shop-commerce/prisma`
+- Prisma config is defined in `layers/shop-commerce/prisma.config.ts`
 
 Common commands:
 
 ```bash
+cd layers/shop-commerce
 npx prisma migrate dev
+npx prisma generate
 npx prisma db seed
 ```
 

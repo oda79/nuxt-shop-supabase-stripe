@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client"
+  output = "./src/generated/prisma-client"
+}
+
+generator zod {
+  provider = "zod-prisma-types"
+  output = "../shared/schemas/zod"
+}
+
+datasource db {
+  provider = "postgresql"  
+}
+
+model Product {
+  id          Int       @id @default(autoincrement())
+  name        String
+  description String
+  image       String
+  category    String
+  price       Float
+  createdAt   DateTime  @default(now()) @db.Timestamptz(6)
+}
